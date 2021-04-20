@@ -23,4 +23,8 @@ public interface IInstituteRepository extends JpaRepository<Institution, Integer
 	//List<Institution> fetchAllInstitutes();
 	
 	//List<Institution> fetchInstitutesByState(String state);
+	
+	Institution findByCode(int code);
+	
+	List<Institution> findByState(String state);
 }

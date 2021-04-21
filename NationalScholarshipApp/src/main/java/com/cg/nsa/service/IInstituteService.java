@@ -12,7 +12,7 @@ public interface IInstituteService {
 
 	Institution addInstitute(Institution institute);
 	
-	Institution editInstitute(int userId, Institution institute);
+	Institution editInstitute(String userId, Institution institute);
 	
 	Institution statusUpdate(int code, Institution institute);
 	

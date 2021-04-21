@@ -22,9 +22,9 @@ public class InstituteServiceImpl implements IInstituteService {
 	}
 
 	@Override
-	public Institution editInstitute(int userId, Institution institute) {
+	public Institution editInstitute(String userId, Institution institute) {
 		// TODO Auto-generated method stub
-		Institution institution = iRepository.findById(userId).get();
+		Institution institution = iRepository.findByUserId(userId);
 		institution.setUniversity(institute.getUniversity());
 		institution.setTelephone(institute.getTelephone());
 		institution.setPrincipal(institute.getPrincipal());
@@ -42,7 +42,16 @@ public class InstituteServiceImpl implements IInstituteService {
 	@Override
 	public Institution getInstitute(int code) /*throws InvalidInstitutionException */{
 		// TODO Auto-generated method stub
-		return iRepository.findByCode(code);
+		Institution institute = iRepository.findByCode(code);
+		if(institute == null)
+		{
+			throw new InvalidInstitutionException();
+		}
+		else
+		{
+			return institute;
+		}
+		
 	}
 
 	@Override

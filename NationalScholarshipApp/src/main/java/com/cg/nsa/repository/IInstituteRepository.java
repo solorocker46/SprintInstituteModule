@@ -9,7 +9,7 @@ import com.cg.nsa.entity.Institution;
 import com.cg.nsa.exception.InvalidInstitutionException;
 
 @Repository
-public interface IInstituteRepository extends JpaRepository<Institution, Integer>
+public interface IInstituteRepository extends JpaRepository<Institution, String>
 {
 
 	//Institution saveInstitute(Institution institute);
@@ -23,6 +23,7 @@ public interface IInstituteRepository extends JpaRepository<Institution, Integer
 	//List<Institution> fetchAllInstitutes();
 	
 	//List<Institution> fetchInstitutesByState(String state);
+	Institution findByUserId(String userId);
 	
 	Institution findByCode(int code);
 	

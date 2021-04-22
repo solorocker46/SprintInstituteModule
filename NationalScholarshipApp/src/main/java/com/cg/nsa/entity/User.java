@@ -1,10 +1,13 @@
 package com.cg.nsa.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
@@ -14,8 +17,13 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class User 
 {
 	@Id
+	@Column(name = "userId")
 	private String userId;
+	@Column(name = "password")
+	@Size(min = 3, message = "The password size should be a minimum of 3 characters")
 	private String password;
+	@Column(name = "role")
+	@NotEmpty(message = "Role cannot be empty")
 	private String role;
 	
 	public User(String userId, String password, String role) {

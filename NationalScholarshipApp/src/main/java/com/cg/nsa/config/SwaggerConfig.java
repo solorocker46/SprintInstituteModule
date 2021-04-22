@@ -26,8 +26,8 @@ public class SwaggerConfig {
     }
     private ApiInfo metaData() {
         ApiInfo apiInfo = new ApiInfo(
-                "product",
-                "product details end points",
+                "National Scholarship Application",
+                "National Scholarship Application details end points",
                 "1.0",
                 "Terms of service",
                 new Contact("capgemini", "", "danahurt4@gmail.com"),

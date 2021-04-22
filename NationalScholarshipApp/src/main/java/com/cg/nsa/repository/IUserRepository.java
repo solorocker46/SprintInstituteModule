@@ -7,11 +7,12 @@ import org.springframework.stereotype.Repository;
 import com.cg.nsa.entity.User;
 
 @Repository
-//@EnableJpaRepositories
-public interface IUserRepository extends JpaRepository<User, Integer>
+public interface IUserRepository extends JpaRepository<User, String>
 {
 
 	//User login(User user);
 	
     //	User logout(User user);
+	
+	User findByUserId(String userId);
 }

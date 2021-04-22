@@ -7,6 +7,13 @@ import org.springframework.stereotype.Service;
 import com.cg.nsa.entity.Institution;
 import com.cg.nsa.exception.InvalidInstitutionException;
 
+/**
+ * @author Sushma S
+ * Version: 1.0
+ * Description: This is service the IInstituteService interface
+ * Created date: 19-04-2021
+ */
+
 @Service
 public interface IInstituteService {
 
@@ -14,9 +21,9 @@ public interface IInstituteService {
 	
 	Institution editInstitute(String userId, Institution institute);
 	
-	Institution statusUpdate(int code, Institution institute);
+	Institution statusUpdate(int code, String status);
 	
-	Institution getInstitute(int code); //throws InvalidInstitutionException;
+	Institution getInstitute(int code);
 	
 	List<Institution> getAllInstitutes();
 	

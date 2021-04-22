@@ -1,27 +1,75 @@
 package com.cg.nsa.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Range;
+import org.hibernate.validator.constraints.UniqueElements;
+
+/**
+ * @author Sushma S
+ * Version: 1.0
+ * Description: This is the entity class - Institution
+ * Created date: 19-04-2021
+ */
 
 @Entity
 @Table(name="institution10")
 @PrimaryKeyJoinColumn(name="userId")  
 public class Institution extends User
 {
-	//@Id
+	@Column(name = "code")
+	@Range(min = 1, message = "Please enter a valid code")
 	private int code;
+	
+	@NotEmpty(message = "Category cannot be empty")
+	@Column(name = "category")
 	private String category;	//	Government/Private/Autonomous
+	
+	@Column(name = "type")
+	@NotEmpty(message = "Institution type cannot be empty")
 	private String type;		// Medical/Law/Engineering
+	
+	@Column(name = "name")
+	@NotEmpty(message = "Institution name cannot be empty")
 	private String name;
+	
+	@Column(name = "university")
+	@NotEmpty(message = "University cannot be empty")
 	private String university;		// 	University affiliated with
+	
+	@Column(name = "address")
+	@NotEmpty(message = "Address cannot be empty")
 	private String address;
+	
+	@Column(name = "city")
+	@NotEmpty(message = "City cannot be empty")
 	private String city;
+	
+	@Column(name = "state")
+	@NotEmpty(message = "State cannot be empty")
 	private String state;
+	
+	@Column(name = "yearOpen")
+	@Range(min = 1945, max = 2020, message = "Please enter a valid inaugral year")
 	private int yearOpen;
+	
+	@Column(name = "telephone")
+	@Size(min = 10, max = 10, message = "Please enter a valid telephone number")
 	private String telephone;
+	
+	@Column(name = "principal")
+	@NotEmpty(message = "Principal name cannot be empty")
 	private String principal;
+	
+	@Column(name = "status")
 	private String status;		// Pending/Approved/Rejected
 	
 	public Institution(String userId, String password, String role, int code, String category, String type, String name,

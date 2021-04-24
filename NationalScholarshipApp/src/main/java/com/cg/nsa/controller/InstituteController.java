@@ -28,12 +28,14 @@ import com.cg.nsa.service.IInstituteService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-/**
+/******************************************************************
+ * 
  * @author Sushma S
  * Version: 1.0
  * Description: This is controller methods implementation
  * Created date: 20-04-2021
- */
+ * 
+ ******************************************************************/
 
 @Api("Institution controller")
 @RestController
@@ -41,15 +43,18 @@ import io.swagger.annotations.ApiOperation;
 public class InstituteController {
 	
 	@Autowired
-	IInstituteService service;
+	IInstituteService iInstituteService;
 	
-	/**
+	/***************************************************************************************
+	 * 
 	 * @param institution
 	 * @param bindingResult
 	 * @return this method returns a new ResponseEntity with an appropriate response code
-	 * @throws this method throws ValidationException
-	 * @throws this method throws UniqueElementException
-	 */
+	 * @throws this method can throw ValidationException
+	 * @throws this method can throw UniqueElementException
+	 * 
+	 ***************************************************************************************/
+	
 	@ApiOperation("Add new institute")
 	@PostMapping("/addInstitute")
 	public ResponseEntity<Object> addInstitute(@Valid @RequestBody Institution institution, BindingResult bindingResult)
@@ -66,30 +71,35 @@ public class InstituteController {
 		}
 		try
 		{
-			service.addInstitute(institution);
+			iInstituteService.addInstitute(institution);
 			return new ResponseEntity<Object>("Added successfully", HttpStatus.OK);
 		}
 		catch(UniqueElementException exception)
 		{
-			throw new UniqueElementException("The above institution code already exists");
+			throw new UniqueElementException("The above institution code / user id already exists");
 		}
 	}
 	
-	/**
+	/**********************************************************************
+	 * 
 	 * @return this method returns a list of objects of type Institution
-	 */
+	 * 
+	 **********************************************************************/
+	
 	@ApiOperation("Get all institutes")
 	@GetMapping("/getAllInstitutes")
 	public List<Institution> getAllInstitutes()
 	{
-		return service.getAllInstitutes();
+		return iInstituteService.getAllInstitutes();
 	}
 	
-	/**
+	/**********************************************************************************
 	 * @param Institution code
-	 * @return this method returns an Institution object
+	 * @return this method returns an Institution object given its institution code
 	 * @throws this method throws InvalidInstitutionException
-	 */
+	 * 
+	 **********************************************************************************/
+	
 	@ApiOperation("Get institute by code")
 	@GetMapping("/getInstituteByCode/{code}")
 	public Institution getInstituteByCode(@PathVariable int code)
@@ -97,7 +107,7 @@ public class InstituteController {
 		
 		try
 		{
-			return service.getInstitute(code);
+			return iInstituteService.getInstitute(code);
 		}
 		catch(InvalidInstitutionException exception)
 		{
@@ -105,25 +115,29 @@ public class InstituteController {
 		}
 	}
 	
-	/**
+	/*******************************************************************************************
+	 * 
 	 * @param state
 	 * @return this method returns a list of objects of type Institution based on their state
-	 */
+	 * 
+	 *******************************************************************************************/
 	@ApiOperation("Get institute by state")
 	@GetMapping("/getInstituteByState/{state}")
 	public List<Institution> getInstituteByState(@PathVariable String state)
 	{
-		return service.getInstitutesByState(state);
+		return iInstituteService.getInstitutesByState(state);
 	}
 	
-	/**
+	/***************************************************************************************
+	 * 
 	 * @param userId
 	 * @param Institution object
 	 * @param BindingResult
 	 * @return this method returns a new ResponseEntity with an appropriate response code
-	 * @throws this method throws ValidationException
-	 * @throws this method throws UserIdNotFoundException
-	 */
+	 * @throws this method can throw ValidationException
+	 * @throws this method can throw UserIdNotFoundException
+	 * 
+	 ***************************************************************************************/
 	@ApiOperation("Edit institute details")
 	@PutMapping("/editInstituteDetails/{userId}")
 	public ResponseEntity<Object> editInstituteDetails(@PathVariable String userId, @Valid @RequestBody Institution institution, BindingResult bindingResult)
@@ -140,7 +154,7 @@ public class InstituteController {
 		}
 		try
 		{
-			service.editInstitute(userId, institution);
+			iInstituteService.editInstitute(userId, institution);
 			return new ResponseEntity<Object>("Edited details successfully", HttpStatus.OK);
 		}
 		catch(UserIdNotFoundException exception)
@@ -149,19 +163,22 @@ public class InstituteController {
 		}
 	}
 	
-	/**
+	/****************************************************************************************
+	 * 
 	 * @param institution code
 	 * @param status
 	 * @return this method returns a new ResponseEntity with an appropriate response code
-	 * @throws this method throws InvalidInstitutionException
-	 */
+	 * @throws this method can throw InvalidInstitutionException
+	 * 
+	 *****************************************************************************************/
+	
 	@ApiOperation("Update status")
 	@PutMapping("/updateStatus/{code}")
 	public ResponseEntity<Object> updateStatus(@PathVariable int code, @RequestBody String status)
 	{
 		try
 		{
-			service.statusUpdate(code, status);
+			iInstituteService.statusUpdate(code, status);
 			return new ResponseEntity<Object>("Updated successfully", HttpStatus.OK);
 		}
 		catch(InvalidInstitutionException exception)

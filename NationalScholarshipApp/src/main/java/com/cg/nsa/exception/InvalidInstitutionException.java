@@ -1,37 +1,77 @@
 package com.cg.nsa.exception;
 
-/**
+/***********************************************************************************
+ * 
  * @author Sushma S
  * Version: 1.0
  * Description: This is the implementation class of InvalidInstitutionException
  * Created date: 21-04-2021
- */
+ * 
+ ************************************************************************************/
 
 public class InvalidInstitutionException extends RuntimeException {
 
+	/**************************************
+	 * 
+	 * This is a no-arg constructor
+	 * 
+	 **************************************/
+	
 	public InvalidInstitutionException() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
+	/****************************************
+	 * 
+	 * @param message
+	 * This is a parameterized constructor
+	 * 
+	 *****************************************/
+	
 	public InvalidInstitutionException(String message) {
 		super(message);
-		// TODO Auto-generated constructor stub
+		
 	}
 
+	/****************************************
+	 * 
+	 * @param cause
+	 * This is a parameterized constructor
+	 * 
+	 *****************************************/
+	
 	public InvalidInstitutionException(Throwable cause) {
 		super(cause);
-		// TODO Auto-generated constructor stub
+		
 	}
 
+	/****************************************
+	 * 
+	 * @param message
+	 * @param cause
+	 * This is a parameterized constructor
+	 * 
+	 *****************************************/
+	
 	public InvalidInstitutionException(String message, Throwable cause) {
 		super(message, cause);
-		// TODO Auto-generated constructor stub
+
 	}
 
+	/****************************************
+	 * 
+	 * @param message
+	 * @param cause
+	 * @param enableSuppression
+	 * @param writableStackTrace
+	 * This is a parameterized constructor
+	 * 
+	 *****************************************/
+	
 	public InvalidInstitutionException(String message, Throwable cause, boolean enableSuppression,
 			boolean writableStackTrace) {
 		super(message, cause, enableSuppression, writableStackTrace);
-		// TODO Auto-generated constructor stub
+
 	}
 
 }

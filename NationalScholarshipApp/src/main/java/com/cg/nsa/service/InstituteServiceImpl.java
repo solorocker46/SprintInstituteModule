@@ -11,32 +11,36 @@ import com.cg.nsa.exception.UniqueElementException;
 import com.cg.nsa.exception.UserIdNotFoundException;
 import com.cg.nsa.repository.IInstituteRepository;
 
-/**
+/*****************************************************************************************
+ * 
  * @author Sushma S
  * Version: 1.0
  * Description: This is service method implementation of IInstituteService interface
  * Created date: 20-04-2021
- */
+ * 
+ *****************************************************************************************/
+
 @Service
 public class InstituteServiceImpl implements IInstituteService {
 
 	@Autowired
-	IInstituteRepository iRepository;
+	IInstituteRepository iInstituteRepository;
 	
-	/***********************************************************
+	/**************************************************************************************************************
 	 * 
-	 * @return this method returns an Institution object
+	 * @return this method returns an Institution object after adding an institution's details into the database
 	 * @param this method takes in Institution object parameter
-	 * @throws this method throws a UniqueElementException
+	 * @throws this method can throw a UniqueElementException
 	 * 
-	 **********************************************************/
+	 **************************************************************************************************************/
+	
 	@Override
 	public Institution addInstitute(Institution institute) {
 		// TODO Auto-generated method stub
-		if(iRepository.findByCode(institute.getCode()) == null)
+		if(iInstituteRepository.findByCode(institute.getCode()) == null && iInstituteRepository.findByUserId(institute.getUserId()) == null)
 		{
-			institute.setStatus("Pending");
-			return iRepository.save(institute);
+			institute.updateStatus("Pending");
+			return iInstituteRepository.save(institute);
 			
 		}
 		else
@@ -45,16 +49,19 @@ public class InstituteServiceImpl implements IInstituteService {
 		}
 	}
 
-	/**
-	 * @return this method returns an Institution object
+	/************************************************************************************************
+	 * 
+	 * @return this method returns an Institution object after editing existing institution details
 	 * @param this method takes in userId of type String as a parameter
 	 * @param this method takes in Institution object parameter
-	 * @throws this method throws a UserIdNotFoundException
-	 */
+	 * @throws this method can throw a UserIdNotFoundException
+	 * 
+	 ************************************************************************************************/
+	
 	@Override
 	public Institution editInstitute(String userId, Institution institute) {
 		// TODO Auto-generated method stub
-		Institution institution = iRepository.findByUserId(userId);
+		Institution institution = iInstituteRepository.findByUserId(userId);
 		if(institution == null)
 		{
 			throw new UserIdNotFoundException();
@@ -64,41 +71,47 @@ public class InstituteServiceImpl implements IInstituteService {
 			institution.setUniversity(institute.getUniversity());
 			institution.setTelephone(institute.getTelephone());
 			institution.setPrincipal(institute.getPrincipal());
-			return iRepository.save(institution);
+			return iInstituteRepository.save(institution);
 		}
 	}
 
-	/**
-	 * @return this method returns an Institution object
+	/*********************************************************************************
+	 * 
+	 * @return this method returns an Institution object after updating the status
 	 * @param this method takes in institution code of type int as a parameter
 	 * @param this method takes in status of type String as a parameter
-	 * @throws this method throws an InvalidInstitutionException
-	 */
+	 * @throws this method can throw an InvalidInstitutionException
+	 * 
+	 **********************************************************************************/
+	
 	@Override
 	public Institution statusUpdate(int code, String status) {
 		// TODO Auto-generated method stub
-		Institution institution = iRepository.findByCode(code);
+		Institution institution = iInstituteRepository.findByCode(code);
 		if(institution == null)
 		{
 			throw new InvalidInstitutionException();
 		}
 		else
 		{
-			institution.setStatus(status);
-			return iRepository.save(institution);
+			institution.updateStatus(status);
+			return iInstituteRepository.save(institution);
 		}
 		
 	}
 
-	/**
-	 * @return this method returns an Institution object
+	/*********************************************************************************************
+	 * 
+	 * @return this method finds an institution by its code and returns that institution object 
 	 * @param this method takes in institution code of type int as a parameter
-	 * @throws this method throws an InvalidInstitutionException
-	 */
+	 * @throws this method can throw an InvalidInstitutionException
+	 * 
+	 **********************************************************************************************/
+	
 	@Override
-	public Institution getInstitute(int code) /*throws InvalidInstitutionException */{
+	public Institution getInstitute(int code) {
 		// TODO Auto-generated method stub
-		Institution institute = iRepository.findByCode(code);
+		Institution institute = iInstituteRepository.findByCode(code);
 		if(institute == null)
 		{
 			throw new InvalidInstitutionException();
@@ -110,23 +123,29 @@ public class InstituteServiceImpl implements IInstituteService {
 		
 	}
 
-	/**
+	/***************************************************************
+	 * 
 	 * @return this method returns a list of Institution objects
-	 */
+	 * 
+	 ***************************************************************/
+	
 	@Override
 	public List<Institution> getAllInstitutes() {
 		// TODO Auto-generated method stub
-		return iRepository.findAll();
+		return iInstituteRepository.findAll();
 	}
 
-	/**
-	 * @return this method returns a list of Institution objects
+	/***********************************************************************************************
+	 * 
+	 * @return this method returns a list of Institution objects belonging to a particular state
 	 * @param this method takes in state of type String as a parameter
-	 */
+	 * 
+	 ***********************************************************************************************/
+	
 	@Override
 	public List<Institution> getInstitutesByState(String state) {
 		// TODO Auto-generated method stub
-		return iRepository.findByState(state);
+		return iInstituteRepository.findByState(state);
 	}
 
 }

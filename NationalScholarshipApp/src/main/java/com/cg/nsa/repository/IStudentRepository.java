@@ -8,15 +8,21 @@ import org.springframework.stereotype.Repository;
 import com.cg.nsa.entity.Student;
 import com.cg.nsa.exception.InvalidInstitutionException;
 
+/**
+ * 
+ * @author Sneha.M.J
+ * Version: 1.0
+ * Description: This is the Student Repository Interface. It extends the JpaRepository.
+ * Created date: 20-04-2021
+ */
+
 @Repository
-public interface IStudentRepository extends JpaRepository<Student, Integer>
+public interface IStudentRepository extends JpaRepository<Student, String>
 {
 
-	//Student saveStudent(Student student);
+	Student findByUserId(String userId);
 	
-	//Student updateStudent(Student student);
+	Student findByStudentId(int studentId);
 	
-	//List<Student> fetchAllStudents();
-	
-	//List<Student> fetchStudentsByInstitute(String name) throws InvalidInstitutionException;
+	List<Student> findByInstitutionUserId(String userId);
 }

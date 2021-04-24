@@ -7,12 +7,14 @@ import org.springframework.stereotype.Service;
 import com.cg.nsa.entity.Institution;
 import com.cg.nsa.exception.InvalidInstitutionException;
 
-/**
+/**************************************************************************
+ * 
  * @author Sushma S
  * Version: 1.0
  * Description: This is the service layer's IInstituteService interface
  * Created date: 19-04-2021
- */
+ * 
+ ****************************************************************************/
 
 @Service
 public interface IInstituteService {

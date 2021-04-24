@@ -23,16 +23,17 @@ public class InstituteServiceImpl implements IInstituteService {
 	@Autowired
 	IInstituteRepository iRepository;
 	
-	/**
+	/***********************************************************
+	 * 
 	 * @return this method returns an Institution object
 	 * @param this method takes in Institution object parameter
 	 * @throws this method throws a UniqueElementException
-	 */
+	 * 
+	 **********************************************************/
 	@Override
 	public Institution addInstitute(Institution institute) {
 		// TODO Auto-generated method stub
-		Institution institution = iRepository.findByCode(institute.getCode());
-		if(institution == null)
+		if(iRepository.findByCode(institute.getCode()) == null)
 		{
 			institute.setStatus("Pending");
 			return iRepository.save(institute);

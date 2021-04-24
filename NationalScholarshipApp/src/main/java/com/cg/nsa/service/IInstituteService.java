@@ -10,7 +10,7 @@ import com.cg.nsa.exception.InvalidInstitutionException;
 /**
  * @author Sushma S
  * Version: 1.0
- * Description: This is service the IInstituteService interface
+ * Description: This is the service layer's IInstituteService interface
  * Created date: 19-04-2021
  */
 

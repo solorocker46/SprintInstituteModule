@@ -1,12 +1,11 @@
 /********************************************************
- 
+ * 
  * @author Rajkumar V
  * version: 1.0
  * Description: This is the user entity class 
  * Created date: 20-04-2021
- 
- * ******************************************************
- */
+ * 
+ * ******************************************************/
 package com.cg.nsa.entity;
 
 import javax.persistence.Column;

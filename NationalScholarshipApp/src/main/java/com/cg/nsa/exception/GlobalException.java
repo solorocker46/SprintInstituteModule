@@ -25,9 +25,9 @@ public class GlobalException {
 	 ***************************************************************************************/
 	
 	@ExceptionHandler(InvalidInstitutionException.class)
-	public ResponseEntity<Object> handleException(InvalidInstitutionException exception)
+	public ResponseEntity<Object> handleException(InvalidInstitutionException invalidInstitutionException)
 	{
-		return new ResponseEntity<Object>(exception.getMessage(), HttpStatus.NOT_FOUND);
+		return new ResponseEntity<Object>(invalidInstitutionException.getMessage(), HttpStatus.NOT_FOUND);
 	}
 	
 	/****************************************************************************************
@@ -38,9 +38,9 @@ public class GlobalException {
 	 ***************************************************************************************/
 	
 	@ExceptionHandler(UserIdNotFoundException.class)
-	public ResponseEntity<Object> handleException(UserIdNotFoundException exception)
+	public ResponseEntity<Object> handleException(UserIdNotFoundException userIdNotFoundException)
 	{
-		return new ResponseEntity<Object>(exception.getMessage(), HttpStatus.NOT_FOUND);
+		return new ResponseEntity<Object>(userIdNotFoundException.getMessage(), HttpStatus.NOT_FOUND);
 	}
 	
 	/****************************************************************************************
@@ -51,9 +51,9 @@ public class GlobalException {
 	 ***************************************************************************************/
 	
 	@ExceptionHandler(UniqueElementException.class)
-	public ResponseEntity<Object> handleException(UniqueElementException exception)
+	public ResponseEntity<Object> handleException(UniqueElementException uniqueElementException)
 	{
-		return new ResponseEntity<Object>(exception.getMessage(), HttpStatus.NOT_FOUND);
+		return new ResponseEntity<Object>(uniqueElementException.getMessage(), HttpStatus.NOT_FOUND);
 	}
 	
 	/****************************************************************************************
@@ -64,9 +64,21 @@ public class GlobalException {
 	 ***************************************************************************************/
 	
 	@ExceptionHandler(ValidationException.class)
-	public ResponseEntity<Object> handleException(ValidationException exception)
+	public ResponseEntity<Object> handleException(ValidationException validationException)
 	{
-		return new ResponseEntity<Object>(exception.getMessages(), HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<Object>(validationException.getMessages(), HttpStatus.BAD_REQUEST);
 	}
 	
+	/****************************************************************************************
+	 * 
+	 * @param exception
+	 * @return this method returns a new ResponseEntity with an appropriate response code
+	 * 
+	 ***************************************************************************************/
+	
+	@ExceptionHandler(StateNotFoundException.class)
+	public ResponseEntity<Object> handleException(StateNotFoundException stateNotFoundException)
+	{
+		return new ResponseEntity<Object>(stateNotFoundException.getMessage(), HttpStatus.NOT_FOUND);
+	}
 }

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.nsa.entity.Institution;
 import com.cg.nsa.exception.InvalidInstitutionException;
+import com.cg.nsa.exception.StateNotFoundException;
 import com.cg.nsa.exception.UniqueElementException;
 import com.cg.nsa.exception.UserIdNotFoundException;
 import com.cg.nsa.exception.ValidationException;
@@ -74,7 +75,7 @@ public class InstituteController {
 			iInstituteService.addInstitute(institution);
 			return new ResponseEntity<Object>("Added successfully", HttpStatus.OK);
 		}
-		catch(UniqueElementException exception)
+		catch(UniqueElementException uniqueElementException)
 		{
 			throw new UniqueElementException("The above institution code / user id already exists");
 		}
@@ -109,7 +110,7 @@ public class InstituteController {
 		{
 			return iInstituteService.getInstitute(code);
 		}
-		catch(InvalidInstitutionException exception)
+		catch(InvalidInstitutionException invalidInstitutionException)
 		{
 			throw new InvalidInstitutionException("The above code doesn't exist");
 		}
@@ -125,7 +126,14 @@ public class InstituteController {
 	@GetMapping("/getInstituteByState/{state}")
 	public List<Institution> getInstituteByState(@PathVariable String state)
 	{
-		return iInstituteService.getInstitutesByState(state);
+		try
+		{
+			return iInstituteService.getInstitutesByState(state);
+		}
+		catch(StateNotFoundException stateNotFoundException)
+		{
+			throw new StateNotFoundException("No institutions from "+state+" have registered");
+		}
 	}
 	
 	/***************************************************************************************
@@ -157,7 +165,7 @@ public class InstituteController {
 			iInstituteService.editInstitute(userId, institution);
 			return new ResponseEntity<Object>("Edited details successfully", HttpStatus.OK);
 		}
-		catch(UserIdNotFoundException exception)
+		catch(UserIdNotFoundException userIdNotFoundException)
 		{
 			throw new UserIdNotFoundException("Entered User Id does not exist");
 		}
@@ -181,7 +189,7 @@ public class InstituteController {
 			iInstituteService.statusUpdate(code, status);
 			return new ResponseEntity<Object>("Updated successfully", HttpStatus.OK);
 		}
-		catch(InvalidInstitutionException exception)
+		catch(InvalidInstitutionException invalidInstitutionException)
 		{
 			throw new InvalidInstitutionException("Entered institution code does not exist");
 		}

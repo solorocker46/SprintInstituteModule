@@ -5,34 +5,27 @@ import java.time.LocalDate;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Range;
-import org.hibernate.validator.constraints.UniqueElements;
-import org.springframework.context.annotation.Description;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-/*********************
+/****************************************************************************
  * 
  * @author Sneha.M.J
  * Version: 1.0
  * Description: This is the Student Entity Class
  * Created date: 20-04-2021
  * 
- **********************/
+ ****************************************************************************/
 
 @Entity
 @Table(name="student10")
@@ -79,28 +72,54 @@ public class Student extends User
 	@Size(min = 12,max=12,message = "Aadhar no should consist of 12 digits")
 	private String aadhar;
 	
+	@Column(name = "field")
+	@NotEmpty(message="Field cannot be empty")
 	private String field;		// Medical, Law, Engineering
+	
+	@Column(name = "course")
+	@NotEmpty(message="Course cannot be empty")
 	private String course;		// LLB, MBA, MBBS, BE, BTech, MTech, BCA
+	
+	@Column(name = "courseYear")
+	@Range(min=1,max=4)
 	private int courseYear;		// Current course year
+	
+	@Column(name = "sscScore")
+	@Range(min = (long) 0.0,max = (long) 100.0, message = "Ssc score should be between 0 and 100")
 	private double sscScore;
+	
+	@Column(name = "hscScore")
+	@Range(min = (long) 0.0,max = (long) 100.0, message = "Hsc score should be between 0 and 100")
 	private double hscScore;
+	
+	@Column(name = "familyIncome")
 	private double familyIncome;
+	
+	@Column(name = "bankName")
+	@NotEmpty(message="Bank Name cannot be empty")
 	private String bankName;
+	
+	@Column(name = "bankIfsc")
+	@NotEmpty(message="Ifsc Code cannot be empty")
+	@Size(min = 11,max=11,message = "Ifsc Code should consist of 11 digits")
 	private String bankIfsc;
+	
+	@Column(name = "accountNo")
+	@NotEmpty(message="Account No cannot be empty")
 	private String accountNo;
+	
+	@Column(name = "appStatus")
 	private String appStatus;		// Pending/Approved/Rejected
+	
+	@Column(name = "approval")
 	private String approval;		// Pending/Granted
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "institutionUserId")
 	private Institution institution;
 
-	public Student() {
-		// TODO Auto-generated constructor stub
-	}
 	
-	
-	
+		
 	public Student(String userId, String password, String role, @Range(min = 1, max = 200) int studentId,
 			@NotEmpty(message = "Full Name cannot be empty") String fullName, @Past LocalDate birthdate,
 			@NotEmpty(message = "Gender cannot be empty") String gender,
@@ -132,7 +151,16 @@ public class Student extends User
 		this.accountNo = accountNo;
 	}
 
+	public Student(String userId, String password, String role) {
+		super(userId, password, role);
+	}
 
+	public Student() 
+	{
+		// TODO Auto-generated constructor stub
+	}
+	
+	
 
 	public int getStudentId() {
 		return studentId;
@@ -451,13 +479,6 @@ public class Student extends User
 		if (studentId != other.studentId)
 			return false;
 		return true;
-	}
-	
-	
-	
-	
-	
-	
-	
+	}	
 	
 }

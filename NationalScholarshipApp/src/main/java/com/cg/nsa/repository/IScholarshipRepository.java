@@ -10,5 +10,5 @@ import com.cg.nsa.entity.Scholarship;
 @Repository
 public interface IScholarshipRepository extends JpaRepository<Scholarship, Integer>
 {
-
+	Scholarship findByScholarshipId(int scholarshipId);
 }

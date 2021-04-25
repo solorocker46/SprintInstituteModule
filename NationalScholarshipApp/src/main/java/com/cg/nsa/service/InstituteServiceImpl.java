@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.cg.nsa.entity.Institution;
 import com.cg.nsa.exception.InvalidInstitutionException;
+import com.cg.nsa.exception.StateNotFoundException;
 import com.cg.nsa.exception.UniqueElementException;
 import com.cg.nsa.exception.UserIdNotFoundException;
 import com.cg.nsa.repository.IInstituteRepository;
@@ -145,7 +146,15 @@ public class InstituteServiceImpl implements IInstituteService {
 	@Override
 	public List<Institution> getInstitutesByState(String state) {
 		// TODO Auto-generated method stub
-		return iInstituteRepository.findByState(state);
+		List<Institution> institutionList = iInstituteRepository.findByState(state);
+		if(institutionList.isEmpty())
+		{
+			throw new StateNotFoundException();
+		}
+		else
+		{
+			return institutionList;
+		}
 	}
 
 }

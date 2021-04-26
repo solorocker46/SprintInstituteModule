@@ -29,6 +29,8 @@ public class InstituteServiceImpl implements IInstituteService {
 	
 	/**************************************************************************************************************
 	 * 
+	 * @author Sushma S
+	 * Created date: 20-04-2021
 	 * @return this method returns an Institution object after adding an institution's details into the database
 	 * @param this method takes in Institution object parameter
 	 * @throws this method can throw a UniqueElementException
@@ -52,6 +54,8 @@ public class InstituteServiceImpl implements IInstituteService {
 
 	/************************************************************************************************
 	 * 
+	 * @author Sushma S
+	 * Created date: 20-04-2021
 	 * @return this method returns an Institution object after editing existing institution details
 	 * @param this method takes in userId of type String as a parameter
 	 * @param this method takes in Institution object parameter
@@ -78,6 +82,8 @@ public class InstituteServiceImpl implements IInstituteService {
 
 	/*********************************************************************************
 	 * 
+	 * @author Sushma S
+	 * Created date: 20-04-2021
 	 * @return this method returns an Institution object after updating the status
 	 * @param this method takes in institution code of type int as a parameter
 	 * @param this method takes in status of type String as a parameter
@@ -103,6 +109,8 @@ public class InstituteServiceImpl implements IInstituteService {
 
 	/*********************************************************************************************
 	 * 
+	 * @author Sushma S
+	 * Created date: 20-04-2021
 	 * @return this method finds an institution by its code and returns that institution object 
 	 * @param this method takes in institution code of type int as a parameter
 	 * @throws this method can throw an InvalidInstitutionException
@@ -126,6 +134,8 @@ public class InstituteServiceImpl implements IInstituteService {
 
 	/***************************************************************
 	 * 
+	 * @author Sushma S
+	 * Created date: 20-04-2021
 	 * @return this method returns a list of Institution objects
 	 * 
 	 ***************************************************************/
@@ -138,6 +148,8 @@ public class InstituteServiceImpl implements IInstituteService {
 
 	/***********************************************************************************************
 	 * 
+	 * @author Sushma S
+	 * Created date: 20-04-2021
 	 * @return this method returns a list of Institution objects belonging to a particular state
 	 * @param this method takes in state of type String as a parameter
 	 * 

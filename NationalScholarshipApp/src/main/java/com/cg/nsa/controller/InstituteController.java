@@ -48,6 +48,8 @@ public class InstituteController {
 	
 	/***************************************************************************************
 	 * 
+	 * @author Sushma S
+	 * Created date: 20-04-2021
 	 * @param institution
 	 * @param bindingResult
 	 * @return this method returns a new ResponseEntity with an appropriate response code
@@ -83,6 +85,8 @@ public class InstituteController {
 	
 	/**********************************************************************
 	 * 
+	 * @author Sushma S
+	 * Created date: 20-04-2021
 	 * @return this method returns a list of objects of type Institution
 	 * 
 	 **********************************************************************/
@@ -95,6 +99,9 @@ public class InstituteController {
 	}
 	
 	/**********************************************************************************
+	 * 
+	 * @author Sushma S
+	 * Created date: 20-04-2021
 	 * @param Institution code
 	 * @return this method returns an Institution object given its institution code
 	 * @throws this method throws InvalidInstitutionException
@@ -118,6 +125,8 @@ public class InstituteController {
 	
 	/*******************************************************************************************
 	 * 
+	 * @author Sushma S
+	 * Created date: 20-04-2021
 	 * @param state
 	 * @return this method returns a list of objects of type Institution based on their state
 	 * 
@@ -138,6 +147,8 @@ public class InstituteController {
 	
 	/***************************************************************************************
 	 * 
+	 * @author Sushma S
+	 * Created date: 20-04-2021
 	 * @param userId
 	 * @param Institution object
 	 * @param BindingResult
@@ -173,6 +184,8 @@ public class InstituteController {
 	
 	/****************************************************************************************
 	 * 
+	 * @author Sushma S
+	 * Created date: 20-04-2021
 	 * @param institution code
 	 * @param status
 	 * @return this method returns a new ResponseEntity with an appropriate response code

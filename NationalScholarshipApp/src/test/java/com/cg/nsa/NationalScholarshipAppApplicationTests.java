@@ -20,20 +20,43 @@ import com.cg.nsa.exception.UserIdNotFoundException;
 import com.cg.nsa.exception.ValidationException;
 import com.cg.nsa.service.IInstituteService;
 
+/**************************************************************
+ * 
+ * @author Sushma S
+ * Version: 1.0
+ * Description: This is the test class for institution module
+ * Created date: 23-04-2021
+ * 
+ ***************************************************************/
+
 @SpringBootTest
 class NationalScholarshipAppApplicationTests {
 
 	@Autowired
 	IInstituteService iInstituteService;
 	
-	/*
+	/*****************************************************************************************
+	 * 
+	 * @author Sushma S
+	 * Created date: 23-04-2021
+	 * This is the test case to check addition of new institution details into the database
+	 * 
+	 ******************************************************************************************/
+	
 	@Test
 	void testInstitution() {
-		Institution institution = new Institution("BIT@543", "BIT@543", "Institution", 543, "Private", "Engineering", "BIT", "VTU", "VVPuram", "Bangalore", "Karnataka", 1965, "8990443276", "Raghav Prasad", "Pending");
-		assertEquals(institution, service.addInstitute(institution));
+		Institution institution = new Institution("SIMS667", "SIMS667", "Institution", 289, "Private", "Medical", "SIMS", "RGUHS", "Old Street", "Tumkur", "Karnataka", 2009, "9090665432", "Aishwarya UK", "Pending");
+		institution.updateStatus("Pending");
+		assertEquals(institution, iInstituteService.addInstitute(institution));
 	}
-	*/
 	
+	/******************************************************************************************************************************
+	 * 
+	 * @author Sushma S
+	 * Created date: 23-04-2021
+	 * This is the test case to check addition of new institution details into the database which throws UniqueElementException
+	 * 
+	 ********************************************************************************************************************************/
 	
 	@Test
 	void testInstitutionIntegrity()
@@ -42,7 +65,13 @@ class NationalScholarshipAppApplicationTests {
 		assertThrows(UniqueElementException.class, () -> iInstituteService.addInstitute(institution));
 	}
 	
-	
+	/********************************************************************************************************************************
+	 * 
+	 * @author Sushma S
+	 * Created date: 23-04-2021
+	 * This is the test case to check addition of new institution details into the database which throws UniqueElementException
+	 * 
+	 ********************************************************************************************************************************/
 	
 	@Test
 	void testInstituteIdAttribute()
@@ -51,16 +80,13 @@ class NationalScholarshipAppApplicationTests {
 		assertThrows(UniqueElementException.class, () -> iInstituteService.addInstitute(institution));
 	}
 	
-	
-	/* Doesn't work
-	@Test
-	void testValidation()
-	{
-		Institution institution = new Institution("BIT@009", "BIT@jg", "Institution", 888, "", "Engineering", "BIT", "VTU", "", "Bangalore", "Karnataka", 1965, "8990443276", "Raghav Prasad", "Pending");
-		assertThrows(ValidationException.class, () -> service.addInstitute(institution));
-	}
-	*/
-	
+	/***************************************************************************************************
+	 * 
+	 * @author Sushma S
+	 * Created date: 25-04-2021
+	 * This is the test case to check updation of an existing institution's details in the database
+	 * 
+	 ****************************************************************************************************/
 	
 	@Test
 	void testEditInstitute()
@@ -70,6 +96,14 @@ class NationalScholarshipAppApplicationTests {
 		assertEquals(institution, iInstituteService.editInstitute("BMSIT@123", institution));
 	}
 	
+	/****************************************************************************************************************************************
+	 * 
+	 * @author Sushma S
+	 * Created date: 25-04-2021
+	 * This is the test case to check updation of an existing institution's details in the database which throws UserIdNotFoundException
+	 * 
+	 ****************************************************************************************************************************************/
+	
 	@Test
 	void testEditInstituteIntegrity()
 	{
@@ -77,6 +111,14 @@ class NationalScholarshipAppApplicationTests {
 		institution.updateStatus("Approved");
 		assertThrows(UserIdNotFoundException.class, () -> iInstituteService.editInstitute("BMSIT", institution));
 	}
+	
+	/***************************************************************************************************
+	 * 
+	 * @author Sushma S
+	 * Created date: 25-04-2021
+	 * This is the test case to check retrieval of an existing institution's details from the database
+	 * 
+	 ****************************************************************************************************/
 	
 	@Test
 	void testGetInstituteByCode()
@@ -86,6 +128,14 @@ class NationalScholarshipAppApplicationTests {
 		assertEquals(institution.getCategory(), iInstituteService.getInstitute(101).getCategory());
 	}
 	
+	/***************************************************************************************************
+	 * 
+	 * @author Sushma S
+	 * Created date: 25-04-2021
+	 * This is the test case to check retrieval of an existing institution's details from the database
+	 * 
+	 ****************************************************************************************************/
+	
 	@Test
 	void testGetInstituteByCode2()
 	{
@@ -93,6 +143,14 @@ class NationalScholarshipAppApplicationTests {
 		institution.updateStatus("Approved");
 		assertEquals(institution, iInstituteService.getInstitute(101));
 	}
+	
+	/***************************************************************************************************
+	 * 
+	 * @author Sushma S
+	 * Created date: 25-04-2021
+	 * This is the test case to check retrieval of an existing institution's details from the database
+	 * 
+	 ****************************************************************************************************/
 	
 	@Test
 	void testGetInstituteByCode3()
@@ -102,11 +160,27 @@ class NationalScholarshipAppApplicationTests {
 		assertEquals(institution.findStatus(), iInstituteService.getInstitute(101).findStatus());
 	}
 	
+	/*********************************************************************************************************************************************
+	 * 
+	 * @author Sushma S
+	 * Created date: 25-04-2021
+	 * This is the test case to check retrieval of an existing institution's details from the database which throws InvalidInstitutionException
+	 * 
+	 *********************************************************************************************************************************************/
+	
 	@Test
 	void testGetInstituteByCode4()
 	{
 		assertThrows(InvalidInstitutionException.class, () -> iInstituteService.getInstitute(666));
 	}
+	
+	/***************************************************************************************************************************
+	 * 
+	 * @author Sushma S
+	 * Created date: 25-04-2021
+	 * This is the test case to check retrieval of a list of existing institutions details from the database based on state
+	 * 
+	 ****************************************************************************************************************************/
 	
 	@Test
 	void testGetInstituteByState1()
@@ -118,28 +192,60 @@ class NationalScholarshipAppApplicationTests {
 		assertEquals(institutions, iInstituteService.getInstitutesByState("Andhra Pradesh"));
 	}
 	
+	/*************************************************************************************************************************************************************
+	 * 
+	 * @author Sushma S
+	 * Created date: 25-04-2021
+	 * This is the test case to check retrieval of a list of existing institutions details from the database based on state which throws StateNotFoundException
+	 * 
+	 **************************************************************************************************************************************************************/
+	
 	@Test
 	void testGetInstituteByState2()
 	{
 		assertThrows(StateNotFoundException.class, () -> iInstituteService.getInstitutesByState("Rajasthan"));
 	}
 	
+	/***************************************************************************************
+	 * 
+	 * @author Sushma S
+	 * Created date: 25-04-2021
+	 * This is the test case to check updation of an institution's status in the database 
+	 * 
+	 ***************************************************************************************/
+	
 	@Test
-	void testUpdateDetails1()
+	void testUpdateStatus1()
 	{
 		Institution institution = new Institution("Viu@123", "Viu788", "Institution", 766, "Private", "Law", "VIU Law College", "APU", "Nawabnagar", "Hyderabad", "Andhra Pradesh", 1988, "9987660090", "Sharan V Reddy","");
 		institution.updateStatus("Approved");
 		assertEquals(institution.findStatus(), iInstituteService.statusUpdate(766, "Approved").findStatus());
 	}
 	
+	/*********************************************************************************************************************************
+	 * 
+	 * @author Sushma S
+	 * Created date: 25-04-2021
+	 * This is the test case to check updation of an institution's status in the database which throws InvalidInstitutionException 
+	 * 
+	 **********************************************************************************************************************************/
+	
 	@Test
-	void testUpdateDetails2()
+	void testUpdateStatus2()
 	{
 		assertThrows(InvalidInstitutionException.class, () -> iInstituteService.statusUpdate(880, "Approved"));
 	}
 	
+	/***************************************************************************************
+	 * 
+	 * @author Sushma S
+	 * Created date: 25-04-2021
+	 * This is the test case to check updation of an institution's status in the database 
+	 * 
+	 ***************************************************************************************/
+	
 	@Test
-	void testUpdateDetails3()
+	void testUpdateStatus3()
 	{
 		Institution institution = new Institution("Viu@123", "Viu788", "Institution", 766, "Private", "Law", "VIU Law College", "APU", "Nawabnagar", "Hyderabad", "Andhra Pradesh", 1988, "9987660090", "Sharan V Reddy","");
 		institution.updateStatus("Approved");

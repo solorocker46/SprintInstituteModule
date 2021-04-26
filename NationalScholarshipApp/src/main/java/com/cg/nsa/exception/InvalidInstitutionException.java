@@ -13,6 +13,8 @@ public class InvalidInstitutionException extends RuntimeException {
 
 	/**************************************
 	 * 
+	 * @author Sushma S
+	 * Created date: 21-04-2021
 	 * This is a no-arg constructor
 	 * 
 	 **************************************/
@@ -23,6 +25,8 @@ public class InvalidInstitutionException extends RuntimeException {
 
 	/****************************************
 	 * 
+	 * @author Sushma S
+	 * Created date: 21-04-2021
 	 * @param message
 	 * This is a parameterized constructor
 	 * 
@@ -35,6 +39,8 @@ public class InvalidInstitutionException extends RuntimeException {
 
 	/****************************************
 	 * 
+	 * @author Sushma S
+	 * Created date: 21-04-2021
 	 * @param cause
 	 * This is a parameterized constructor
 	 * 
@@ -47,6 +53,8 @@ public class InvalidInstitutionException extends RuntimeException {
 
 	/****************************************
 	 * 
+	 * @author Sushma S
+	 * Created date: 21-04-2021 
 	 * @param message
 	 * @param cause
 	 * This is a parameterized constructor
@@ -60,6 +68,8 @@ public class InvalidInstitutionException extends RuntimeException {
 
 	/****************************************
 	 * 
+	 * @author Sushma S
+	 * Created date: 21-04-2021
 	 * @param message
 	 * @param cause
 	 * @param enableSuppression

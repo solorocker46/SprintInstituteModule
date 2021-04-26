@@ -13,6 +13,8 @@ public class UniqueElementException extends RuntimeException{
 
 	/***********************************
 	 * 
+	 * @author Sushma S
+	 * Created date: 22-04-2021
 	 * This is a no-arg constructor 
 	 * 
 	 **********************************/
@@ -23,6 +25,8 @@ public class UniqueElementException extends RuntimeException{
 	
 	/***************************************************************
 	 * 
+	 * @author Sushma S
+	 * Created date: 22-04-2021
 	 * @param message
 	 * This is a parameterized constructor with field - message
 	 * 
